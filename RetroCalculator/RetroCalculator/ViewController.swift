@@ -45,12 +45,24 @@ class ViewController: UIViewController {
         outputLbl.text = "0"
     }
     
+    
     @IBAction func numberPressed(sender: UIButton) {
         playSound()
         
         runningNumber += "\(sender.tag)"
         outputLbl.text = runningNumber
         
+    }
+    
+    @IBAction func clearPressed(sender: AnyObject) {
+        playSound()
+        
+        outputLbl.text = "0"
+        runningNumber = ""
+        leftValStr = ""
+        rightValStr = ""
+        result = ""
+        currentOperation = Operation.Empty
     }
     
     @IBAction func dividePressed(sender: AnyObject) {
@@ -83,6 +95,8 @@ class ViewController: UIViewController {
     
     func processOperation(operation: Operation) {
         playSound()
+        
+        
         if currentOperation != Operation.Empty {
             //Check to see if user has entered a number before an operation
             if runningNumber != "" {
